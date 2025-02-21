@@ -1,1 +1,22 @@
-<p>category-form works!</p>
+<div class="px-40 mt-10 flex flex-col">
+  <h1>Add Category</h1>
+  <form action="">
+    <div class="flex">
+      <div class="w-full">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" [(ngModel)]="name" name="name" required>
+        </mat-form-field>
+      </div>
+      <div class="w-full flex justify-center flex-col">
+        <button
+        class="bg-green-900 text-white rounded-md p-2 w-20 border-none hover:bg-sky-900"
+        (click)="addCategory()"
+        [disabled]="!name"
+      >
+        Add
+      </button>
+      </div>
+    </div>
+  </form>
+</div>
