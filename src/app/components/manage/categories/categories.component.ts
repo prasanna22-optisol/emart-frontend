@@ -8,12 +8,13 @@ import {CdkTableDataSourceInput} from '@angular/cdk/table';
 import { CategoryService } from '../../../services/category.service';
 import { Category } from '../../../../types/category';
 import { APIResponse } from '../../../../types/api_response';
-import { RouterModule } from '@angular/router';
+import {ActivatedRoute, Router, RouterModule} from '@angular/router';
+import {MatButton} from '@angular/material/button';
 
 
 @Component({
   selector: 'app-categories',
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule,RouterModule],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, RouterModule, MatButton],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })
@@ -24,12 +25,21 @@ debugClick() {
   displayedColumns: string[] = ['_id', 'name','action'];
   dataSource: MatTableDataSource<Category>;
 
+  router=inject(Router)
+  route=inject(ActivatedRoute)
+
+  isReady:boolean=false
+
+
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   categoryService=inject(CategoryService);
   constructor() {
-
+    setTimeout(()=>{
+      this.isReady=true
+    },3000)
     this.dataSource = new MatTableDataSource([] as any);
   }
   ngOnInit(){
@@ -41,6 +51,17 @@ debugClick() {
       this.dataSource.data = result.data;
       console.log(this.dataSource.data);
     });
+  }
+
+  deleteCategory(id:string){
+    this.categoryService.deleteCategory(id).subscribe((result:APIResponse<Category>)=>{
+      alert("Category deleted!")
+      console.log(result)
+      setTimeout(()=>{
+        location.reload()
+        this.router.navigate(['/admin/categories'])
+      },3000)
+    })
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

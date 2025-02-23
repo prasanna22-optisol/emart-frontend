@@ -1,8 +1,8 @@
 <div class="px-40 mt-10 flex flex-col">
   @if (isEdit) {
-    Edit Category
+    Edit Brand
   } @else {
-    Add new Category
+    Add new Brand
   }
   <form action="">
     <div class="flex">
@@ -16,7 +16,7 @@
         @if (!isEdit) {
           <button
             class="bg-green-900 text-white rounded-md p-2 w-20 border-none hover:bg-sky-900"
-            (click)="addCategory()"
+            (click)="addBrand()"
             [disabled]="!name"
           >
             Add
@@ -24,7 +24,7 @@
         } @else {
           <button
             class="bg-green-900 text-white rounded-md p-2 w-20 border-none hover:bg-sky-900"
-            (click)="updateCategory()"
+            (click)="updateBrand()"
             [disabled]="!name"
           >
             Update
