@@ -1,0 +1,41 @@
+<div class="border-r-4 w-full h-full flex flex-col shadow-lg">
+  <img
+    [src]="product?.images?.[0]"
+    alt="Product Image"
+    class="w-full h-52 object-cover"
+    width="50"
+    height="50"
+  />
+  <div class="p-4 flex flex-1 flex-col justify-between h-full">
+    <div>
+      <h6 class="mb-2">{{product.name}}</h6>
+      <p>
+        {{product.description}}
+      </p>
+    </div>
+    <div class="flex justify-between items-baseline">
+      <div class="flex gap-2 items-baseline">
+        <span class="!text-lg text-gray-400"
+          ><s>
+            {{product.price + (product?.discount || 0)}}
+          </s></span
+        >
+        <!-- <span class="!text-xs text-orange-300"
+          >20% OFF</span
+        > -->
+        <span class="!text-lg text-green-500 font-bold"
+          >{{product.price}}₹</span
+        >
+      </div>
+
+    </div>
+    <div class="flex flex-col gap-2.5">
+      <button mat-fab color="warn" class="bg-yellow-500 p-3 text-black rounded-md border-none hover:bg-red-800 hover:text-white" >
+        Add To WishList
+      </button>
+      <button mat-fab color="primary" class="bg-sky-700 p-3 text-white rounded-md border-none hover:bg-green-800" >
+        Add To Cart
+      </button>
+    </div>
+  </div>
+</div>
