@@ -1,0 +1,41 @@
+<div class="flex justify-center w-full mt-10">
+  <div class="bg-white p-8 rounded shadow-md w-6/12 sm:w-96">
+    <h2 class="text-2xl font-bold mb-4">Register</h2>
+    <form [formGroup]="registerForm">
+      <div class="mb-4">
+        <mat-form-field class="w-full">
+          <h4 class="mb-6">Name</h4>
+          <mat-label>Name</mat-label>  <!-- ✅ Corrected label -->
+          <input matInput type="text" formControlName="name" placeholder="Your Name" required class="bg-slate-300 p-2 rounded-md"/>
+        </mat-form-field>
+      </div>
+      <div class="mb-4">
+        <mat-form-field class="w-full">
+          <h4 class="mb-6">Email</h4>
+          <mat-label>Email</mat-label>  <!-- ✅ Corrected label -->
+          <input matInput type="email" formControlName="email" placeholder="Your Email" required class="bg-slate-300 p-2 rounded-md"/>
+        </mat-form-field>
+      </div>
+      <div class="mb-6">
+        <mat-form-field class="w-full">
+          <h4 class="mb-6">Password</h4>
+          <mat-label>Password</mat-label>  <!-- ✅ Corrected label -->
+          <input matInput type="password" formControlName="password" placeholder="Your Password" required class="bg-slate-300 p-2 rounded-md"/>
+        </mat-form-field>
+      </div>
+      <div class="mb-6">
+        <mat-form-field class="w-full">
+          <h4 class="mb-6">Confirm Password</h4>
+          <mat-label>Confirm Password</mat-label>  <!-- ✅ Corrected label -->
+          <input matInput type="password" formControlName="confirmPassword" placeholder="Confirm Password" required class="bg-slate-300 p-2 rounded-md"/>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" (click)="registerUser()" [disabled]="registerForm.invalid" class="justify-center p-3 rounded-lg bg-lime-700 text-white hover:bg-rose-800">
+        Register
+      </button>
+      <div *ngIf="registerForm.errors?.['passwordMismatch'] && registerForm.touched" class="error">
+        Passwords do not match!
+      </div>
+    </form>
+  </div>
+</div>

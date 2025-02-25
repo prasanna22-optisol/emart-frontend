@@ -4,23 +4,31 @@ import { MatIconModule } from '@angular/material/icon';
 import { CategoryService } from '../../services/category.service';
 import { Category } from '../../../types/category';
 import { APIResponse } from '../../../types/api_response';
+import { AuthenticationService } from '../../services/authentication.service';
+import { CustomerService } from '../../services/customer.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   styleUrls: ['./header.component.scss'],
-  imports: [FormsModule,MatIconModule],
+  imports: [FormsModule,MatIconModule,RouterModule],
   templateUrl: './header.component.html',
   selector: 'app-header'
 })
 export class HeaderComponent  implements OnInit {
 
+    authService=inject(AuthenticationService)
+    categoryService=inject(CategoryService)
+    customerService=inject(CustomerService)
+    router=inject(Router)
+
 
     ngOnInit(): void {
-      this.categoryService.getAllCategories().subscribe((res: APIResponse<Category[]>) => {
-        this.categoryList = res.data;
-      });
+      this.customerService.getAllCustomerCategories().subscribe((result:APIResponse<Category[]>)=>{
+        console.log(result)
+        this.categoryList=result.data
+      })
     }
 
-    categoryService=inject(CategoryService)
     categoryList: Category[]=[]
 
     // authService: any;
@@ -32,6 +40,9 @@ export class HeaderComponent  implements OnInit {
     }
 
     logout() {
+      localStorage.removeItem('token')
+      localStorage.removeItem('user')
+      this.router.navigateByUrl('/login')
     }
 
 }
