@@ -12,6 +12,8 @@ import { authGuard } from './components/core/authGuard';
 import { AdminDashboardComponent } from './components/manage/admin-dashboard/admin-dashboard.component';
 import { adminGuard } from './components/core/adminGuard';
 import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 console.log(authGuard)
 
@@ -25,6 +27,16 @@ export const routes: Routes = [
     path:"profile",
     component:CustomerProfileComponent,
     canActivate:[authGuard]
+  },
+  {
+    path: 'products',
+    component: ProductListComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path:"product/:id",
+    component:ProductDetailComponent,
+    canActivate: [authGuard],
   },
   {
     path:"admin",

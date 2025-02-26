@@ -20,6 +20,7 @@ export class HeaderComponent  implements OnInit {
     categoryService=inject(CategoryService)
     customerService=inject(CustomerService)
     router=inject(Router)
+    searchTerm!:string
 
 
     ngOnInit(): void {
@@ -32,11 +33,15 @@ export class HeaderComponent  implements OnInit {
     categoryList: Category[]=[]
 
     // authService: any;
-    onSearch($event: Event) {
+    onSearch(e:any) {
+      if(e.target.value){
+        this.router.navigateByUrl("/products?search="+e.target.value)
+     }
     }
-    searchTerm: any;
 
-    searchCategory(arg0: any) {
+    searchCategory(id:string) {
+      this.searchTerm="";
+      this.router.navigateByUrl("/products?categoryId="+id!)
     }
 
     logout() {

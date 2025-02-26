@@ -1,0 +1,52 @@
+<div class="flex px-10 py-2">
+  <div class="w-3/12">
+    <!-- <h6>Filters</h6> -->
+    <div class="w-full p-2 mb-4">
+      <mat-form-field class="Category">
+        <mat-label>Category</mat-label>
+        <mat-select name="categoryId" [(ngModel)]="categoryId" (valueChange)="getFilteredProducts()">
+          @for (item of categories; track $index) {
+            <mat-option [value]="item._id">{{item.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="w-full p-2 mb-4">
+      <mat-form-field class="Brands">
+        <mat-label>Brand</mat-label>
+        <mat-select name="brandId" [(ngModel)]="brandId" (valueChange)="getFilteredProducts()">
+          @for (item of brands; track $index) {
+            <mat-option [value]="item._id">{{item.name}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+  </div>
+  <div class="flex-1">
+    <!-- <h6>Products</h6> -->
+    <div class="justify-end">
+      <mat-form-field class="w-40">
+        <mat-label>Order By</mat-label>
+        <mat-select (valueChange)="orderChange($event)">
+          <mat-option [value]="1">Price Low to High</mat-option>
+          <mat-option [value]="-1">Price High to Low</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="flex flex-wrap gap-2 ml-10">
+      @for (p of products; track $index) {
+        <div class="w-3/12 mr-4 mb-4">
+          <app-product-card [product]="p"></app-product-card>
+        </div>
+      }
+      @empty {
+        <h3 class="mt-15 ml-10 text-2xl justify-center align-center">No Products Found</h3>
+      }
+    </div>
+    <div class="flex gap-2 mt-5">
+      <button mat-raised-button color="primary" [disabled]="page===1" (click)="pageChange(page-1)">Previous</button>
+      <button mat-raised-button color="primary" (click)="pageChange(page+1)" [disabled]="!isNext">Next</button>
+    </div>
+  </div>
+</div>

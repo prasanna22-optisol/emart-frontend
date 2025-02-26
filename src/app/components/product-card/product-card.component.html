@@ -1,15 +1,18 @@
-<div class="border-r-4 w-full h-full flex flex-col shadow-lg">
-  <img
+<div class="border-r-4 w-full h-full flex flex-col shadow-lg min-h-80">
+  <div class="cursor-pointer">
+    <img
     [src]="product?.images?.[0]"
     alt="Product Image"
     class="w-full h-52 object-cover"
     width="50"
     height="50"
+    [routerLink]="'/product/' + product._id"
   />
+  </div>
   <div class="p-4 flex flex-1 flex-col justify-between h-full">
     <div>
-      <h6 class="mb-2">{{product.name}}</h6>
-      <p>
+      <h6 class="mb-2 text-lg font-semibold">{{product.name}}</h6>
+      <p class="text-sm text-gray-600 line-clamp-3">
         {{product.description}}
       </p>
     </div>
@@ -20,20 +23,18 @@
             {{product.price + (product?.discount || 0)}}
           </s></span
         >
-        <!-- <span class="!text-xs text-orange-300"
-          >20% OFF</span
-        > -->
-        <span class="!text-lg text-green-500 font-bold"
-          >{{product.price}}₹</span
-        >
+        <span class="!text-lg text-green-500 font-bold">
+          {{product.price}}₹
+        </span>
       </div>
-
     </div>
     <div class="flex flex-col gap-2.5">
-      <button mat-fab color="warn" class="bg-yellow-500 p-3 text-black rounded-md border-none hover:bg-red-800 hover:text-white" >
+      <button mat-fab color="warn"
+        class="bg-yellow-500 p-3 text-black rounded-md border-none hover:bg-red-800 hover:text-white">
         Add To WishList
       </button>
-      <button mat-fab color="primary" class="bg-sky-700 p-3 text-white rounded-md border-none hover:bg-green-800" >
+      <button mat-fab color="primary"
+        class="bg-sky-700 p-3 text-white rounded-md border-none hover:bg-green-800">
         Add To Cart
       </button>
     </div>
