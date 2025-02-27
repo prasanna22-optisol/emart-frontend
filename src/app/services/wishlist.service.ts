@@ -12,7 +12,7 @@ export class WishlistService {
 
   http=inject(HttpClient)
 
-  wishlists:Product[]=[]
+  wishlists:any[]=[]
 
   init(){
     return this.getWishList().subscribe((res:APIResponse<any>)=>{

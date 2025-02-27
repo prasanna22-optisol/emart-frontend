@@ -6,6 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { APIResponse } from '../../../types/api_response';
 import { Product } from '../../../types/product';
 import { CommonModule } from '@angular/common';
+import { WishlistService } from '../../services/wishlist.service';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -17,8 +19,10 @@ export class ProductDetailComponent implements OnInit {
 
 
   customerService=inject(CustomerService)
-  route=inject(ActivatedRoute)
 
+  route=inject(ActivatedRoute)
+  wishListService=inject(WishlistService)
+  cartService=inject(CartService)
   similarProducts: Product[] = [];
   product!: Product;
   mainImage: any;
@@ -37,19 +41,52 @@ export class ProductDetailComponent implements OnInit {
 
 
   }
-  addToCart(arg0: any) {
-  }
-  isProductInCart(arg0: any):boolean {
-    return false;
-  }
-  isInWishlist(arg0: any):boolean {
-    return false;
-  }
-  addToWishList(arg0: any) {
-  }
+
+
   sellingPrice: any;
-  changeImage(_t7: any) {
+
+  isInWishlist(product: Product): boolean {
+    let exists = this.wishListService.wishlists.find((p) => p.productId._id === product._id);
+    return exists ? true : false;
   }
+
+  addToWishList(product:Product){
+    console.log("Wishlist added Product: " , product)
+    console.log("Wishlist added Product: " , product._id)
+    if(this.isInWishlist(product)){
+      this.wishListService.removeWishlist(product._id).subscribe((res)=>{
+        console.log("Product removed from wishlist: " , res.data)
+      this.wishListService.wishlists = this.wishListService.wishlists.filter(p => p._id !== product._id);    })
+  }else{
+    this.wishListService.addWishLists(product._id).subscribe((res)=>{
+      console.log("Product added t wishlist: " , res.data)
+      this.wishListService.wishlists.push(product); // Add product locally to prevent duplicates
+    })
+  }
+ }
+ isProductInCart(productId :  string):boolean {
+  if (this.cartService.items.find((x) => x.product._id == productId)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+addToCart(product: Product) {
+  if(!this.isProductInCart(product._id)){
+    this.cartService.addToCart(product._id,1).subscribe(()=>{
+      console.log('product added to cart : ',product)
+      this.cartService.init()
+    })
+  }
+  else{
+    this.cartService.removeFromCart(product._id).subscribe(()=>{
+      console.log('product removed from cart : ',product)
+      this.cartService.init()
+    })
+  }
+}
+
 
 
 }

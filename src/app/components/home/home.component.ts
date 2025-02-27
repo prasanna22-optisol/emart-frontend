@@ -5,6 +5,7 @@ import { APIResponse } from '../../../types/api_response';
 import { ProductCardComponent } from "../product-card/product-card.component";
 import {CarouselModule, OwlOptions} from "ngx-owl-carousel-o"
 import { WishlistService } from '../../services/wishlist.service';
+import { CartService } from '../../services/cart.service';
 @Component({
   standalone: true,
   imports: [ProductCardComponent, CarouselModule],
@@ -14,6 +15,7 @@ import { WishlistService } from '../../services/wishlist.service';
 export class HomeComponent implements OnInit {
 
   wishListService=inject(WishlistService)
+  cartService=inject(CartService)
 
   customOptions: OwlOptions = {
     loop: true,
@@ -43,6 +45,8 @@ export class HomeComponent implements OnInit {
       console.log(this.featuredProducts)
       this.bannerImages.push(...res.data)
     })
+    this.wishListService.init()
+    this.cartService.init()
   }
 
 }

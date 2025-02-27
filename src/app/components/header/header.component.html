@@ -16,15 +16,22 @@
     </div>
     <div class="profile flex gap-2 items-center text-white">
 
-      @if (authService.isAdmin) {
+      @if (authService.isAdmin && authService.isLoggedIn) {
         <a [routerLink]="'/admin'">{{authService.userName}}</a>
       }
-      @else{
+      @else if(!authService.isAdmin && authService.isLoggedIn) {
         <a [routerLink]="'/profile'">{{authService.userName}}</a>
       }
 
+
       @if (authService.isLoggedIn) {
         <a (click)="logout()" class="cursor-pointer ml-2">Logout</a>
+        <a [routerLink]="'/wishlist'" class="cursor-pointer ml-2">Wishlist</a>
+        <a [routerLink]="'/cart'" class="text-zinc-300">
+          <mat-icon class="text-zinc-300">
+            shopping-cart
+          </mat-icon>
+        </a>
       }
       @else {
         <a [routerLink]="'/login'" class="cursor-pointer ml-2">Log In</a>

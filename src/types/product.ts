@@ -9,4 +9,6 @@ export interface Product{
   brandId?: string;
   isFeatured?: boolean;
   isNewProduct?: boolean;
+
+  productId?:Product
 }
