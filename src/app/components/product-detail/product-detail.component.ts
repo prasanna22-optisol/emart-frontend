@@ -27,8 +27,14 @@ export class ProductDetailComponent implements OnInit {
     const id=this.route.snapshot.params["id"]
     this.customerService.getProductById(id).subscribe((result:APIResponse<Product>)=>{
       this.product=result.data
-      console.log(this.product)
+
+      this.customerService.getProducts('',this.product.categoryId as string,'',-1,'',1,4).subscribe((result:APIResponse<Product[]>)=>{
+        this.similarProducts=result.data
+        console.log("Similar products:",result.data)
+      })
     })
+
+
 
   }
   addToCart(arg0: any) {

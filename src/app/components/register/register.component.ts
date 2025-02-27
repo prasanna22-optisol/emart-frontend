@@ -37,7 +37,7 @@ export class RegisterComponent {
       value!.confirmPassword
     ).subscribe((result:APIResponse<Register>)=>{
       console.log(result)
-      alert(result.message)
+      // alert(result.message)
     })
   }
 

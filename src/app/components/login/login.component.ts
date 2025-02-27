@@ -34,7 +34,7 @@ export class LoginComponent {
         value.email, value.password
       ).subscribe((result:APIResponse<Login>)=>{
         console.log(result);
-        alert("Login successful")
+        // alert("Login successful")
         localStorage.setItem("token", result.data.token)
         localStorage.setItem("user", JSON.stringify(result.data.user))
         if(localStorage.getItem("token") != null && localStorage.getItem("user") != null){

@@ -28,7 +28,7 @@
         </span>
       </div>
     </div>
-    <div class="flex flex-col gap-2.5">
+    <!-- <div class="flex flex-col gap-2.5">
       <button mat-fab color="warn"
         class="bg-yellow-500 p-3 text-black rounded-md border-none hover:bg-red-800 hover:text-white">
         Add To WishList
@@ -37,6 +37,20 @@
         class="bg-sky-700 p-3 text-white rounded-md border-none hover:bg-green-800">
         Add To Cart
       </button>
-    </div>
+    </div> -->
+    <button mat-fab color="warn" (click)="addToWishList(product)">
+      @if(isInWishlist(product)){
+      <mat-icon class="text-red-500">favorite</mat-icon>
+      }@else {
+      <mat-icon class="text-red-500">favorite_border</mat-icon>
+      }
+    </button>
+    <button mat-fab color="primary" (click)="addToCart(product)">
+      @if (isProductInCart(product._id!)) {
+      <mat-icon>remove_shopping_cart</mat-icon>
+      }@else {
+      <mat-icon>add_shopping_cart</mat-icon>
+      }
+    </button>
   </div>
 </div>
