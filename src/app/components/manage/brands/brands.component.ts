@@ -71,7 +71,7 @@ export class BrandsComponent {
   constructor() {
     setTimeout(()=>{
       this.isReady=true
-    },3000)
+    },400)
     this.dataSource = new MatTableDataSource([] as any);
   }
   ngOnInit(){

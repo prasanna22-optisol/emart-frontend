@@ -39,6 +39,10 @@ export class ProductCardComponent {
         this.cartService.init()
       })
     }
+
+    // setTimeout(()=>{
+    //   location.reload()
+    // },600)
   }
 
   isInWishlist(product: Product): boolean {
@@ -60,6 +64,9 @@ export class ProductCardComponent {
       this.wishListService.wishlists.push(product); // Add product locally to prevent duplicates
     })
   }
+  setTimeout(()=>{
+    location.reload()
+  },400)
  }
 
   @Input() product!:Product | any

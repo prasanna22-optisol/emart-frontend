@@ -68,7 +68,7 @@ export class ProductComponent implements AfterViewInit,OnInit {
   constructor() {
     setTimeout(()=>{
       this.isReady=true
-    },3000)
+    },400)
     this.dataSource = new MatTableDataSource([] as any);
   }
   ngOnInit(){

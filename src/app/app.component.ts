@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   constructor(){
     setTimeout(()=>{
       this.isReady=true
-    },1500)
+    },500)
   }
 
   ngOnInit(): void {
