@@ -1,8 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { WishList } from '../types/wishlist';
+import { WishlistService } from './services/wishlist.service';
+import { AuthenticationService } from './services/authentication.service';
+import { CartService } from './services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +14,23 @@ import { FooterComponent } from './components/footer/footer.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+
   title = 'frontend';
+
+
+  wishListService=inject(WishlistService)
+  authService=inject(AuthenticationService)
+  cartService=inject(CartService)
+
+  ngOnInit(): void {
+    if(this.authService.isLoggedIn ){
+      this.wishListService.init()
+      this.cartService.init()
+    }
+  }
+
+
+
+
 }

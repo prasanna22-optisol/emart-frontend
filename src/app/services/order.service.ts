@@ -21,9 +21,9 @@ export class OrderService {
     return this.http.get('http://localhost:3000/api/orders/all')
   }
 
-  updateOrderStatus(orderId:string,status:string){
+  updateOrderStatusByAdmin(orderId:string,status:string){
     console.log(orderId,status)
-    return this.http.post('http://localhost:3000/api/orders/status/${orderId}',{status:status})
+    return this.http.post(`http://localhost:3000/api/orders/status/${orderId}`,{status:status})
   }
 
   constructor() { }

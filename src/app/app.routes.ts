@@ -16,6 +16,8 @@ import { ProductListComponent } from './components/product-list/product-list.com
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { CustomerOrderComponent } from './components/customer-order/customer-order.component';
+import { AdminOrderComponent } from './components/manage/admin-order/admin-order.component';
 
 console.log(authGuard)
 
@@ -54,6 +56,11 @@ export const routes: Routes = [
     path:"admin",
     component:AdminDashboardComponent,
     canActivate:[adminGuard]
+  },
+  {
+    path:"orders",
+    component:CustomerOrderComponent,
+    canActivate:[authGuard]
   },
   {
     path:"admin/categories",
@@ -98,6 +105,11 @@ export const routes: Routes = [
   {
     path:"admin/products/:id",
     component:ProductFormComponent,
+    canActivate:[adminGuard]
+  },
+  {
+    path:"admin/orders",
+    component:AdminOrderComponent,
     canActivate:[adminGuard]
   },
   {

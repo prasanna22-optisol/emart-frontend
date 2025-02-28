@@ -1,5 +1,6 @@
 <div class="max-w-4xl mx-auto py-12">
-  <h1 class="text-3xl font-bold text-center mb-8">Your Shopping Cart</h1>
+  @if (step==0) {
+    <h1 class="text-3xl font-bold text-center mb-8">Your Shopping Cart</h1>
 
   <!-- Cart Items -->
   <div class="bg-white shadow-md rounded-lg overflow-hidden">
@@ -58,9 +59,60 @@
       <button
         (click)="checkout()"
         class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md focus:outline-none"
+        [disabled]="cartItems.length === 0"
       >
         Proceed to Checkout
       </button>
     </div>
   </div>
+  }
+  @else if (step==1) {
+    <h1 class="text-3xl font-bold text-center mb-8">Please enter your Order Address</h1>
+      <form [formGroup]="addressForm">
+        <div class="mb-4">
+          <mat-form-field class="w-full">
+            <h4 class="mb-6">Address 1</h4>
+            <mat-label>Address 1</mat-label>  <!-- ✅ Corrected label -->
+            <input matInput type="text" formControlName="address1" placeholder="Enter address line 1" required class="bg-slate-300 p-2 rounded-md"/>
+          </mat-form-field>
+        </div>
+        <div class="mb-4">
+          <mat-form-field class="w-full">
+            <h4 class="mb-6">Address 2</h4>
+            <mat-label>Address 2</mat-label>  <!-- ✅ Corrected label -->
+            <input matInput type="text" formControlName="address2" placeholder="Enter address line 2" required class="bg-slate-300 p-2 rounded-md"/>
+          </mat-form-field>
+        </div>
+        <div class="mb-6">
+          <mat-form-field class="w-full">
+            <h4 class="mb-6">City</h4>
+            <mat-label>City</mat-label>  <!-- ✅ Corrected label -->
+            <input matInput type="text" formControlName="city" placeholder="Enter city" required class="bg-slate-300 p-2 rounded-md"/>
+          </mat-form-field>
+        </div>
+        <div class="mb-6">
+          <mat-form-field class="w-full">
+            <h4 class="mb-6">Pincode</h4>
+            <mat-label>Pincode</mat-label>  <!-- ✅ Corrected label -->
+            <input matInput type="text" formControlName="pincode" placeholder="Enter Pincode" required class="bg-slate-300 p-2 rounded-md"/>
+          </mat-form-field>
+        </div>
+        <button mat-raised-button (click)="addAddress()" class="bg-lime-400 p-5 rounded-md border-none hover:bg-amber-400">Continue</button>
+      </form>
+
+
+  }
+  @else if(step==2){
+    <h1 class="text-3xl font-bold text-center mb-8">Select Payment Method</h1>
+    <div class="p-30 shadow">
+      <mat-radio-group [(ngModel)]="paymentType" class="flex flex-col">
+        <mat-radio-button value="cash">Cash</mat-radio-button>
+        <mat-radio-button value="card" [disabled]="true">Card</mat-radio-button>
+      </mat-radio-group>
+
+      <button  mat-raised-button (click)="completeOrder()" class=" mt-16 justify-end  items-end bg-blue-600 text-white p-4 rounded-md border-none hover:bg-red-700">
+        Continue
+      </button>
+    </div>
+  }
 </div>
