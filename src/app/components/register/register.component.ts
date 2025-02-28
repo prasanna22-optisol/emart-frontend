@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { AuthenticationService } from '../../services/authentication.service';
 import { APIResponse } from '../../../types/api_response';
 import { Register } from '../../../types/register';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -28,6 +29,8 @@ export class RegisterComponent {
     validator: passwordMatchValidator
   });
 
+  router=inject(Router)
+
   registerUser(){
     let value=this.registerForm.value;
     this.authService.register(
@@ -37,6 +40,9 @@ export class RegisterComponent {
       value!.confirmPassword
     ).subscribe((result:APIResponse<Register>)=>{
       console.log(result)
+      this.router.navigateByUrl('/login').then(()=>{
+        location.reload()
+      })
       // alert(result.message)
     })
   }
