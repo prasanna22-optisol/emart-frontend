@@ -38,8 +38,11 @@ export class LoginComponent {
         localStorage.setItem("token", result.data.token)
         localStorage.setItem("user", JSON.stringify(result.data.user))
         if(localStorage.getItem("token") != null && localStorage.getItem("user") != null){
-          this.router.navigateByUrl("/")
+          this.router.navigateByUrl("/").then(()=>{
+            location.reload()
+          })
         }
+
       });
     } else {
       // Handle the case where email or password is missing

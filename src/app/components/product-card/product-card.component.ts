@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { WishlistService } from '../../services/wishlist.service';
 import { CartService } from '../../services/cart.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-product-card',
@@ -16,6 +17,7 @@ export class ProductCardComponent {
 
   cartService=inject(CartService)
   wishListService=inject(WishlistService)
+  authService=inject(AuthenticationService)
 
 
   isProductInCart(productId :  string):boolean {

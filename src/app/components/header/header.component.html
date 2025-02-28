@@ -47,13 +47,18 @@
       }
     </div>
   </div>
-  <nav class="category-menu">
-    <ul class="justify-center align-center">
-      @for (category of categoryList; track $index) {
-      <li (click)="searchCategory(category._id!)" class="cursor-pointer">
-        <a>{{ category.name | titlecase }}</a>
-      </li>
-      }
-    </ul>
-  </nav>
+
+  @if (!authService.isAdmin) {
+    <nav class="category-menu">
+      <ul class="justify-center align-center">
+        @for (category of categoryList; track $index) {
+        <li (click)="searchCategory(category._id!)" class="cursor-pointer">
+          <a>{{ category.name | titlecase }}</a>
+        </li>
+        }
+      </ul>
+    </nav>
+  }
+
+
 </header>

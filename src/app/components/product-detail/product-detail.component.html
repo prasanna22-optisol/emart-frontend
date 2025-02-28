@@ -29,37 +29,39 @@
               >{{ product.price }}₹</span
             >
           </div>
-          <div class="flex gap-8">
-            <button
-              class=" ml-5 p-7 bg-sky-700 hover:bg-green-700 text-white border-none rounded-md"
-              (click)="addToWishList(product)"
-            >
-              @if(isInWishlist(product)){
-              <!-- <mat-icon class="text-red-500">favorite</mat-icon> -->
-              <span>Remove from Wishlist</span>
+          @if(!authService.isAdmin){
+            <div class="flex gap-8">
+              <button
+                class=" ml-5 p-7 bg-sky-700 hover:bg-green-700 text-white border-none rounded-md"
+                (click)="addToWishList(product)"
+              >
+                @if(isInWishlist(product)){
+                <!-- <mat-icon class="text-red-500">favorite</mat-icon> -->
+                <span>Remove from Wishlist</span>
+                }@else {
+                <!-- <mat-icon class="text-red-500">favorite_border</mat-icon> -->
+                <p class="items-center">Add To Wishlist</p>
+              }
+              </button>
+              @if(isProductInCart(product._id!)){
+              <button
+                mat-raised-button
+                class="p-7 bg-yellow-500 hover:bg-red-700 hover:text-white text-black border-none rounded-md"
+                (click)="addToCart(product)"
+              >
+                Remove from Cart
+              </button>
               }@else {
-              <!-- <mat-icon class="text-red-500">favorite_border</mat-icon> -->
-              <p class="items-center">Add To Wishlist</p>
-            }
-            </button>
-            @if(isProductInCart(product._id!)){
-            <button
-              mat-raised-button
-              class="p-7 bg-yellow-500 hover:bg-red-700 hover:text-white text-black border-none rounded-md"
-              (click)="addToCart(product)"
-            >
-              Remove from Cart
-            </button>
-            }@else {
-            <button
+              <button
 
-              class=" p-7 bg-yellow-500 hover:bg-red-700 hover:text-white text-black border-none rounded-md"
-              (click)="addToCart(product)"
-            >
-               Add To Cart
-            </button>
-            }
-          </div>
+                class=" p-7 bg-yellow-500 hover:bg-red-700 hover:text-white text-black border-none rounded-md"
+                (click)="addToCart(product)"
+              >
+                 Add To Cart
+              </button>
+              }
+            </div>
+          }
         </div>
       </div>
     </div>

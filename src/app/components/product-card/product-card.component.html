@@ -38,19 +38,21 @@
         Add To Cart
       </button>
     </div> -->
-    <button mat-fab color="warn" (click)="addToWishList(product)">
-      @if(isInWishlist(product)){
-      <mat-icon class="text-red-500">favorite</mat-icon>
-      }@else {
-      <mat-icon class="text-red-500">favorite_border</mat-icon>
-      }
-    </button>
-    <button mat-fab color="primary" (click)="addToCart(product)">
-      @if (isProductInCart(product._id!)) {
-      <mat-icon>remove_shopping_cart</mat-icon>
-      }@else {
-      <mat-icon>add_shopping_cart</mat-icon>
-      }
-    </button>
+    @if (!authService.isAdmin) {
+      <button mat-fab color="warn" (click)="addToWishList(product)">
+        @if(isInWishlist(product)){
+        <mat-icon class="text-red-500">favorite</mat-icon>
+        }@else {
+        <mat-icon class="text-red-500">favorite_border</mat-icon>
+        }
+      </button>
+      <button mat-fab color="primary" (click)="addToCart(product)">
+        @if (isProductInCart(product._id!)) {
+        <mat-icon>remove_shopping_cart</mat-icon>
+        }@else {
+        <mat-icon>add_shopping_cart</mat-icon>
+        }
+      </button>
+    }
   </div>
 </div>

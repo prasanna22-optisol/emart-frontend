@@ -8,6 +8,7 @@ import { Product } from '../../../types/product';
 import { CommonModule } from '@angular/common';
 import { WishlistService } from '../../services/wishlist.service';
 import { CartService } from '../../services/cart.service';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -23,6 +24,7 @@ export class ProductDetailComponent implements OnInit {
   route=inject(ActivatedRoute)
   wishListService=inject(WishlistService)
   cartService=inject(CartService)
+  authService=inject(AuthenticationService)
   similarProducts: Product[] = [];
   product!: Product;
   mainImage: any;
@@ -63,6 +65,9 @@ export class ProductDetailComponent implements OnInit {
       this.wishListService.wishlists.push(product); // Add product locally to prevent duplicates
     })
   }
+  setTimeout(()=>{
+    location.reload()
+  },400)
  }
  isProductInCart(productId :  string):boolean {
   if (this.cartService.items.find((x) => x.product._id == productId)) {
@@ -85,6 +90,9 @@ addToCart(product: Product) {
       this.cartService.init()
     })
   }
+  setTimeout(()=>{
+    location.reload()
+  },400)
 }
 
 
