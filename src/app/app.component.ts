@@ -17,11 +17,18 @@ import { CartService } from './services/cart.service';
 export class AppComponent implements OnInit {
 
   title = 'frontend';
+  isReady:boolean=false
 
 
   wishListService=inject(WishlistService)
   authService=inject(AuthenticationService)
   cartService=inject(CartService)
+
+  constructor(){
+    setTimeout(()=>{
+      this.isReady=true
+    },1500)
+  }
 
   ngOnInit(): void {
     if(this.authService.isLoggedIn ){

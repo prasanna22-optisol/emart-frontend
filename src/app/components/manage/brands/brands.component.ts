@@ -19,6 +19,7 @@ import {APIResponse} from '../../../../types/api_response';
 import {Brand} from '../../../../types/brand';
 import {BrandService} from '../../../services/brand.service';
 import {MatButton} from '@angular/material/button';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-brands',
@@ -41,6 +42,7 @@ import {MatButton} from '@angular/material/button';
     RouterLinkActive,
     RouterLink,
     MatButton,
+    TitleCasePipe,
     MatHeaderCellDef,
     MatNoDataRow
   ],

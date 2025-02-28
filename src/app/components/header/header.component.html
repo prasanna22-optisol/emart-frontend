@@ -51,7 +51,7 @@
     <ul class="justify-center align-center">
       @for (category of categoryList; track $index) {
       <li (click)="searchCategory(category._id!)" class="cursor-pointer">
-        <a>{{ category.name }}</a>
+        <a>{{ category.name | titlecase }}</a>
       </li>
       }
     </ul>

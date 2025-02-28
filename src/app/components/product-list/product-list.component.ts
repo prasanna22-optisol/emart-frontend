@@ -9,10 +9,11 @@ import { Category } from '../../../types/category';
 import { Brand } from '../../../types/brand';
 import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-list',
-  imports: [ProductCardComponent,MatSelectModule,FormsModule,MatButtonModule],
+  imports: [ProductCardComponent,MatSelectModule,FormsModule,MatButtonModule,TitleCasePipe],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
@@ -71,7 +72,7 @@ export class ProductListComponent implements OnInit {
           this.isNext=false
         }
       })
-    },2000)
+    },1200)
   }
 
   orderChange($event: any) {

@@ -17,6 +17,7 @@ import {Category} from '../../../../types/category';
 import {CategoryService} from '../../../services/category.service';
 import {APIResponse} from '../../../../types/api_response';
 import {ProductService} from '../../../services/product.service';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-product',
@@ -39,7 +40,8 @@ import {ProductService} from '../../../services/product.service';
     RouterLinkActive,
     RouterLink,
     MatHeaderCellDef,
-    MatNoDataRow
+    MatNoDataRow,
+    TitleCasePipe
   ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'

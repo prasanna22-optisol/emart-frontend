@@ -7,10 +7,11 @@ import { APIResponse } from '../../../types/api_response';
 import { AuthenticationService } from '../../services/authentication.service';
 import { CustomerService } from '../../services/customer.service';
 import { Router, RouterModule } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   styleUrls: ['./header.component.scss'],
-  imports: [FormsModule,MatIconModule,RouterModule],
+  imports: [FormsModule,MatIconModule,RouterModule,TitleCasePipe],
   templateUrl: './header.component.html',
   selector: 'app-header'
 })
@@ -47,7 +48,10 @@ export class HeaderComponent  implements OnInit {
     logout() {
       localStorage.removeItem('token')
       localStorage.removeItem('user')
-      this.router.navigateByUrl('/login')
+
+        this.router.navigate(['/login'])
+        location.reload()
+
     }
 
 }

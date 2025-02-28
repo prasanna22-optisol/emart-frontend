@@ -6,7 +6,7 @@
         <mat-label>Category</mat-label>
         <mat-select name="categoryId" [(ngModel)]="categoryId" (valueChange)="getFilteredProducts()">
           @for (item of categories; track $index) {
-            <mat-option [value]="item._id">{{item.name}}</mat-option>
+            <mat-option [value]="item._id">{{item.name | titlecase}}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -16,7 +16,7 @@
         <mat-label>Brand</mat-label>
         <mat-select name="brandId" [(ngModel)]="brandId" (valueChange)="getFilteredProducts()">
           @for (item of brands; track $index) {
-            <mat-option [value]="item._id">{{item.name}}</mat-option>
+            <mat-option [value]="item._id">{{item.name | titlecase}}</mat-option>
           }
         </mat-select>
       </mat-form-field>

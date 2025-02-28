@@ -10,11 +10,12 @@ import { Category } from '../../../../types/category';
 import { APIResponse } from '../../../../types/api_response';
 import {ActivatedRoute, Router, RouterModule} from '@angular/router';
 import {MatButton} from '@angular/material/button';
+import { TitleCasePipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-categories',
-  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, RouterModule, MatButton],
+  imports: [MatFormFieldModule, MatInputModule, MatTableModule, MatSortModule, MatPaginatorModule, RouterModule, MatButton,TitleCasePipe],
   templateUrl: './categories.component.html',
   styleUrl: './categories.component.scss'
 })
