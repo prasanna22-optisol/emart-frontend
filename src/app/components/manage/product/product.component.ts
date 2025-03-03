@@ -89,7 +89,7 @@ export class ProductComponent implements AfterViewInit,OnInit {
       setTimeout(()=>{
         location.reload()
         this.router.navigate(['/admin/products'])
-      },3000)
+      },500)
     })
   }
   ngAfterViewInit() {

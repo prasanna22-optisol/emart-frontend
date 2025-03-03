@@ -90,4 +90,17 @@ export class ProductListComponent implements OnInit {
     this.getFilteredProducts();
  }
 
+ clearFilters(){
+
+  this.categoryId=''
+  this.searchTerm=''
+  this.brandId=''
+  this.sortOrder=-1
+  this.page=1
+  this.searchTerm=''
+
+  this.getFilteredProducts()
+
+ }
+
 }

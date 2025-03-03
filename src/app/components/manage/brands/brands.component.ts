@@ -92,7 +92,7 @@ export class BrandsComponent {
       setTimeout(()=>{
         location.reload()
         this.router.navigate(['/admin/brands'])
-      },3000)
+      },500)
     })
   }
   ngAfterViewInit() {

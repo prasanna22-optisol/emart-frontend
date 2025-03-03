@@ -34,6 +34,9 @@
         </mat-select>
       </mat-form-field>
     </div>
+    <div class="flex gap-2 mt-2.5 mb-2.5">
+      <button mat-raised-button color="warn" (click)="clearFilters()">Clear Filters</button>
+    </div>
     <div class="flex flex-wrap gap-2 ml-10">
       @for (p of products; track $index) {
         <div class="w-3/12 mr-4 mb-4">

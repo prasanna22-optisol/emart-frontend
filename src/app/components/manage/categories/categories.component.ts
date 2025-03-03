@@ -61,7 +61,7 @@ debugClick() {
       setTimeout(()=>{
         location.reload()
         this.router.navigate(['/admin/categories'])
-      },3000)
+      },500)
     })
   }
   ngAfterViewInit() {
