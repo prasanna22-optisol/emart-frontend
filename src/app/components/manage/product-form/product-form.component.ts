@@ -59,8 +59,6 @@ import {
 export class ProductFormComponent implements OnInit {
 
 
-
-
   formBuilder = inject(FormBuilder)
   productForm = this.formBuilder.group({
     name: [null as string | null, [Validators.required, Validators.minLength(5)]],
