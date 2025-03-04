@@ -27,7 +27,13 @@ export class AuthenticationService {
   }
 
   login(email:string, password:string):Observable<APIResponse<Login>>{
-    return this.http.post<APIResponse<Login>>('http://localhost:3000/api/auth/login', {email, password})
+    return this.http.post<APIResponse<Login>>('http://localhost:3000/api/auth/login', {email, password}).pipe(
+      catchError((err)=>{
+        alert(err.message);
+        return throwError(() => new Error(err.message || 'Login failed'));
+        throw err;
+      })
+    )
   }
 
 
