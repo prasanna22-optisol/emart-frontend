@@ -28,7 +28,7 @@ export class CustomerOrderComponent implements OnInit {
     this.orderService.getCustomerOrders().subscribe((result:any)=>{
       console.log(result)
       this.orders=result.data
-      console
+
     })
 
   }
