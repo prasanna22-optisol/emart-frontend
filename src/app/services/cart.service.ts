@@ -13,14 +13,14 @@ export class CartService {
   http=inject(HttpClient)
 
   items:CartItem[]=[]
- 
+
 
 
   init(){
     this.getCartItems().subscribe((result:any)=>{
       this.items=result.data
     })
-    \
+
 
   }
 
