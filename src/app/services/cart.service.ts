@@ -20,12 +20,7 @@ export class CartService {
     this.getCartItems().subscribe((result:any)=>{
       this.items=result.data
     })
-<<<<<<< HEAD
-    
-=======
 
-
->>>>>>> 857f3d2f409833d7e80593a6b2b6e41741298bf2
   }
 
   constructor() { }
@@ -44,6 +39,8 @@ export class CartService {
   removeFromCart(productId:string){
     return this.http.delete(`http://localhost:3000/api/home/carts/remove/${productId}`)
   }
+
+  
 
 
 }

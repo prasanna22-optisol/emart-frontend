@@ -90,5 +90,46 @@ fdescribe('BrandService', () => {
     req.flush(mockResponse)
   })
 
+  it('should update a brand',()=>{
+    const mockResponse:APIResponse<Brand>={
+      message:'Brand updated successfully',
+      statusCode:202,
+      data:{
+        _id:'1',
+        name:'Brand 1'
+      }
+    }
+
+    service.updateBrand('1','Updated Brand 1').subscribe((response)=>{
+      expect(response.data).toEqual(mockResponse.data)
+    })
+
+    const req=httpMock.expectOne('http://localhost:3000/api/brand/update/1')
+    expect(req.request.method).toBe('PUT')
+    expect(req.request.body).toEqual({name:'Updated Brand 1'})
+    req.flush(mockResponse)
+  })
+
+  it('should delete a brand',()=>{
+    const mockResponse:APIResponse<Brand>={
+      message:'Brand deleted successfully',
+      statusCode:200,
+      data:{
+        _id:'1',
+        name:'Test Brand'
+      }
+    }
+
+    service.deleteBrand('1').subscribe((response)=>{
+      expect(response.data).toEqual(mockResponse.data)
+    })
+
+    const req=httpMock.expectOne('http://localhost:3000/api/brand/delete/1')
+    expect(req.request.method).toBe('DELETE')
+    req.flush(mockResponse)
+  })
+
+
+
 
 });
