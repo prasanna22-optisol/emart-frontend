@@ -7,6 +7,10 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { APIResponse } from '../../../types/api_response';
 import { Register } from '../../../types/register';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { selectAuthError } from '../../store/selectors/auth.selector';
+import { Store } from '@ngrx/store';
+import { register } from '../../store/actions/auth.action';
 
 @Component({
   selector: 'app-register',
@@ -17,6 +21,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
 
   authService=inject(AuthenticationService)
+  store=inject(Store)
 
 
   formBuilder = inject(FormBuilder);
@@ -31,20 +36,29 @@ export class RegisterComponent {
 
   router=inject(Router)
 
-  registerUser(){
-    let value=this.registerForm.value;
-    this.authService.register(
-      value!.name,
-      value!.email,
-      value!.password,
-      value!.confirmPassword
-    ).subscribe((result:APIResponse<Register>)=>{
-      console.log(result)
-      this.router.navigateByUrl('/login').then(()=>{
-        location.reload()
-      })
-      // alert(result.message)
-    })
+  // registerUser(){
+  //   let value=this.registerForm.value;
+  //   this.authService.register(
+  //     value!.name,
+  //     value!.email,
+  //     value!.password,
+  //     value!.confirmPassword
+  //   ).subscribe((result:APIResponse<Register>)=>{
+  //     console.log(result)
+  //     this.router.navigateByUrl('/login').then(()=>{
+  //       location.reload()
+  //     })
+  //     // alert(result.message)
+  //   })
+  // }
+
+  authError$: Observable<any> = this.store.select(selectAuthError);
+
+  registerUser() {
+    if (this.registerForm.valid) {
+      const { name, email, password, confirmPassword } = this.registerForm.value;
+      this.store.dispatch(register({ name, email, password, confirmPassword }));
+    }
   }
 
 }

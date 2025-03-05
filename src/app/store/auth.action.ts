@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Register } from '../../../types/register';
-import { Login } from '../../../types/login';
+import { Register } from '../../types/register';
+import { Login } from '../../types/login';
 
 export const register=createAction('[Auth] Register',props<{ name: string; email: string; password: string; confirmPassword: string }>()
 );
