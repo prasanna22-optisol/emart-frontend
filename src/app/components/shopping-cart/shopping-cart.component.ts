@@ -74,7 +74,7 @@ export class ShoppingCartComponent {
     }
     console.log("completed order : " , order)
     this.orderService.addOrder(order).subscribe((result)=>{
-      alert("Your order has been submitted successfully")
+      alert("Your order has been submitted successfully , check your email for confirmation")
       this.cartService.init()
       this.step=0
       this.router.navigate(['/orders'])
