@@ -131,5 +131,4 @@ fdescribe('BrandService', () => {
 
 
 
-
 });
